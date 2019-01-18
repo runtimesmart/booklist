@@ -31,6 +31,7 @@
   
   Linux流分为文件流和socket流
 
-### 7. 
+### 7. WatchDog
+* WatchDog是由SystemServer中启动，主要监听AMS WMS PMS。监听方法 通过在服务中调用addMonitor或者addThread传入对象，看门狗通过判断 服务中消息是否阻塞和是否死锁来决定是否通知System自杀
   
   
