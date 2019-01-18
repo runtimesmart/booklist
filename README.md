@@ -1,3 +1,4 @@
+
 ## Android源码通读笔记
 
 ### 1.android系统分Application、Framework、libraries、Linux内核四层
