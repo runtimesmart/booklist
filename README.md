@@ -18,8 +18,18 @@
   * init进程创建了zygote进程，zygote进程开始涉及java,它创建了system_server进程；zygote和system_server死亡会导致java崩溃。
   其中init进程检查发现zygote如果死亡，会将zygote及其所属的所有子进程全部杀死
   * zygote中有个AppRuntiem类，属于AndroidRuntime的子类，它创建了java Dalvik虚拟机。虚拟机中设置了heapsize=16MB,一般OEM商会改为32MB，stack为8MB
-  * 
   
+### 5.system进程
+  * system_server进程是由zygote创建，注意的是它是由zygoteInit.java中throw exception创建，好处是不会占用之前的堆栈
   
+### 6. 当创建了一个独立进程的Activity时，如何创建进程
+  * 通过SystemServer的子进程activityManagerSerivce
+  打开socket openSocketIfNeeded 写入请求并通过流读取到返回的进程id.新创建的进程会在ZygoteConnection.java类中调用 handleChildProc->
+  RuntimeInit.java中zygoteInit方法 重定向标准输入输出流，修改为System.setOut(AndroidPrintStream(Log.INFO,"System.Out"))..setErr等
+  并且通过 ZygoteInitNative建立与Binder的绑定关系。
+  
+  Linux流分为文件流和socket流
+
+### 7. 
   
   
