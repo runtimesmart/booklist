@@ -40,5 +40,8 @@ HandlerChecker 定时检查scheduleCheckLocked  通过回调monitor和synchroniz
             }
             尝试获取一次锁，如果死锁则无置为true
 如果发现出问题会杀死systemServer,进而导致Zyote进程自杀，导致系统重启
+
+### 7.Android 中的 SP和WP
+    *首先，sp是strong pointer。 wp是weak pointer，sp和wp是用于管理引用对象的内存回收的。引用的增减均为原子操作。
   
   
