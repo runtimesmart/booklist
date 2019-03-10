@@ -40,8 +40,11 @@ HandlerChecker 定时检查scheduleCheckLocked  通过回调monitor和synchroniz
             }
             尝试获取一次锁，如果死锁则无置为true
 如果发现出问题会杀死systemServer,进而导致Zyote进程自杀，导致系统重启
+    * 首先，sp是strong pointer。 wp是weak pointer，sp和wp是用于管理引用对象的内存回收的。引用的增减均为原子操作。
+  
+### 9.Binder机制
+  * 这篇讲的较全面 [简书](https://www.jianshu.com/p/b4a8be5c6300 "简书")  
+  * 分为两类，系统级Binder和应用层通信流程是不一样的。系统通信要经过serviceManager,应用层实现Stub,通过Proxy代理调用transact。
+  * 1.系统级，用户在使用系统服务时，例如MediaPlayService时，调用对应的方法后MediaPlayService-->DefaultServiceManager(BPServiceManager).AddService-->mReomte(BpBinder).transact-->IPCThreadState.transact-->mIn(接收),mOut(发送-->发送之后-->waitForResponse
+  
 
-### 7.Android 中的 SP和WP
-    *首先，sp是strong pointer。 wp是weak pointer，sp和wp是用于管理引用对象的内存回收的。引用的增减均为原子操作。
-  
-  
