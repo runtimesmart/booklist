@@ -50,16 +50,16 @@ HandlerChecker 定时检查scheduleCheckLocked  通过回调monitor和synchroniz
 ### 10.App启动和activity UI绘制流程简述
 
 
-` * #### 1.首先从SystemServer中获取AMS代理对象，AMS通知Zygote进程fork一个新的App进程
+ * #### 1.首先从SystemServer中获取AMS代理对象，AMS通知Zygote进程fork一个新的App进程
  * #### 2.app进程创建ActivityThread，ActivityThread中执行handlerlauncherActivity,
  * #### 3.其中performLauncheActivity中使用Instrucmention使用反射创建一个Activity的类，其中会回调Activity的onCreate方法
  * #### 4.并且performLaunchActivity中会使用PolicyWindowManager创建一个PhoneWindow对象，其父类是Window，PhoneWindow主要
   作用是分发和处理上抛的触摸/按键事件，layout布局、通过ViewRoot获取Surface绘制view然后显示
- > ##### 4.1：Surface绘制会使用到skia的底层lib，涉及FrameBuffer,使用到 FrameBufferStack数据结构，属于生产消费模式，使用BackBuffer添加
-   frontBuffer输出帧
- > ##### 4.2：surface有三种属性，分别是Normal模式，包括绘制帧(drawBuffer)和pushBuffer,UI绘制属于drawBuffer；blur模式和Dim模式，dim例如
-   dialog弹框后背景变暗变模糊。
- > ##### 4.3：SurfaceFlinger和AudioFlinger 分别使用到FrameBufferStack和RingBuffer；需要了解下。
- * #### 5.然后执行handleResumeActivity方法，这里面会获取window并setView()`
+ ` ##### 4.1：Surface绘制会使用到skia的底层lib，涉及FrameBuffer,使用到 FrameBufferStack数据结构，属于生产消费模式，使用BackBuffer添加
+   frontBuffer输出帧`
+ ` ##### 4.2：surface有三种属性，分别是Normal模式，包括绘制帧(drawBuffer)和pushBuffer,UI绘制属于drawBuffer；blur模式和Dim模式，dim例如
+   dialog弹框后背景变暗变模糊。`
+ ` ##### 4.3：SurfaceFlinger和AudioFlinger 分别使用到FrameBufferStack和RingBuffer；需要了解下。`
+ * #### 5.然后执行handleResumeActivity方法，这里面会获取window并setView()
            
   
