@@ -50,7 +50,7 @@ HandlerChecker 定时检查scheduleCheckLocked  通过回调monitor和synchroniz
 ### 10.App启动和activity UI绘制流程简述
 
 
-  #### 1.首先从SystemServer中获取AMS代理对象，AMS通知Zygote进程fork一个新的App进程
+   >>> #### 1.首先从SystemServer中获取AMS代理对象，AMS通知Zygote进程fork一个新的App进程
   #### 2.app进程创建ActivityThread，ActivityThread中执行handlerlauncherActivity,
   #### 3.其中performLauncheActivity中使用Instrucmention使用反射创建一个Activity的类，其中会回调Activity的onCreate方法
   #### 4.并且performLaunchActivity中会使用PolicyWindowManager创建一个PhoneWindow对象，其父类是Window，PhoneWindow主要
